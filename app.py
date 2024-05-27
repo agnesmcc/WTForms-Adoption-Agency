@@ -15,3 +15,8 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 connect_db(app)
 # db.create_all()
+
+@app.route('/')
+def home():
+    pets = Pet.query.all()
+    return render_template('home.html', pets=pets)

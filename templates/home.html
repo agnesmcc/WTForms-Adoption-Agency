@@ -3,14 +3,15 @@
 <h1>Pets</h1>
 <ul>
     {% for pet in pets %}
-        <a href="/pets/{{ pet.id }}">
-            <li>{{ pet.name }} 
-                <img src="{{ pet.photo_url }}">
-                {% if pet.available %}
-                    <b>Available</b>
-                {% endif %}
-            </li>
-        </a>
+        
+        <li>
+            <a href="/pets/{{ pet.id }}">{{ pet.name }}</a>
+            <img src="{{ pet.photo_url }}">
+            {% if pet.available %}
+                <b>Available</b>
+            {% endif %}
+        </li>
+        
     {% endfor %}
 </ul>
 <a href="/add">

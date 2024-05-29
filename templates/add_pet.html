@@ -2,13 +2,17 @@
 {% block content %}
 <h1>Add a pet</h1>
 <form method="POST">
-    {% for field in form %}
-    {% if field.type != 'hidden' and field.name != 'csrf_token' %}
+    {{ form.hidden_tag() }}
+    {% for field in form if field.widget.input_type != 'hidden'%}
     <div>
         {{ field.label }} 
         {{ field }}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                {{ error }}
+            {% endfor %}
+        {% endif %}
     </div>
-    {% endif %}
     {% endfor %}
     <input type="submit" value="Add">
 </form>

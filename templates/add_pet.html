@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Add a pet</h1>
+<form method="POST">
+    {% for field in form %}
+    {% if field.type != 'hidden' and field.name != 'csrf_token' %}
+    <div>
+        {{ field.label }} 
+        {{ field }}
+    </div>
+    {% endif %}
+    {% endfor %}
+    <input type="submit" value="Add">
+</form>
+{% endblock %}

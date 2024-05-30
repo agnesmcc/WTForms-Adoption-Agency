@@ -18,7 +18,7 @@ connect_db(app)
 # db.create_all()
 
 @app.route('/')
-def home():
+def show_home():
     """
     Renders the home page of the application.
 
@@ -33,7 +33,7 @@ def home():
     return render_template('home.html', pets=pets)
 
 @app.route('/add', methods=['GET', 'POST'])
-def addPet():
+def show_add_pet():
     """
     Route for adding a new pet to the database.
 
@@ -70,7 +70,7 @@ def addPet():
     return render_template('add_pet.html', form=form)
 
 @app.route('/<pet_id>', methods=['GET', 'POST'])
-def show_pet(pet_id):
+def show_edit_pet(pet_id):
     """
     Show a specific pet by its ID.
 

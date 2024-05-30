@@ -30,6 +30,7 @@ def show_home():
         The rendered `home.html` template with the `pets` variable passed to it.
 
     """
+    pets = Pet.query.all()
     return render_template('home.html', pets=pets)
 
 @app.route('/add', methods=['GET', 'POST'])
@@ -51,6 +52,7 @@ def show_add_pet():
         - If the request method is POST and the form data is invalid, it renders the 'add_pet.html' template with the
           PetForm instance and error messages.
     """
+    form = PetForm()
     if form.validate_on_submit():
         name = form.name.data
         species = form.species.data
@@ -89,6 +91,7 @@ def show_edit_pet(pet_id):
         - If the request method is POST and the form data is invalid, it renders the 'show_pet.html' template with the
           pet object and the EditPetForm instance, along with error messages.
     """
+    pet = Pet.query.get_or_404(pet_id)
     form = EditPetForm(obj=pet)
     if form.validate_on_submit():
         photo_url = form.photo_url.data
